@@ -22,7 +22,7 @@ namespace SuperbowlSquares
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void GenerateNumbersButton_OnClick(object sender, RoutedEventArgs e)
@@ -30,9 +30,11 @@ namespace SuperbowlSquares
             // Disable the button immediately to prevent accidental double click
             GenerateNumbersButton.IsEnabled = false;
 
+            var generator = new RandomAxis();
+
             // *** COLUMNS *** //
 
-            var columns = RandomAxis.generateAxis().ToList();
+            var columns = generator.GenerateAxis().ToList();
 
             // Get the random numbers from the generator for the COLUMNS
             for (int i = 0; i <= columns.Count - 1; i++)
@@ -49,7 +51,7 @@ namespace SuperbowlSquares
             
             // *** ROWS *** //
 
-            var rows = RandomAxis.generateAxis().ToList();
+            var rows = generator.GenerateAxis().ToList();
 
             // Get the random numbers from the generator for the ROWS
             for (int i = 0; i <= rows.Count - 1; i++)
