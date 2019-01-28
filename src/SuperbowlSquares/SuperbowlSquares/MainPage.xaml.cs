@@ -27,34 +27,38 @@ namespace SuperbowlSquares
 
             // *** COLUMNS *** //
 
+            var columns = RandomAxis.generateAxis().ToList();
+
             // Get the random numbers from the generator for the COLUMNS
-            RandomAxis.generateAxis().ToList().ForEach(number =>
+            for (int i = 0; i < columns.Count - 1; i++)
             {
                 // Create a TextBlock to show the number.
-                var tb = GenerateTextBlock($"{number}");
+                var tb = GenerateTextBlock($"{columns[i]}");
 
                 // This sets the column the TextBlock will be placed in.
-                Grid.SetColumn(tb, number);
+                Grid.SetColumn(tb, i + 1);
 
                 // Adds the TextBlock to the Grid
                 SquaresGrid.Children.Add(tb);
-            });
-
+            }
+            
             // *** ROWS *** //
 
+            var rows = RandomAxis.generateAxis().ToList();
+
             // Get the random numbers from the generator for the ROWS
-            RandomAxis.generateAxis().ToList().ForEach(number =>
+            for (int i = 0; i < rows.Count - 1; i++)
             {
                 // Create a TextBlock to show the number.
-                var tb = GenerateTextBlock($"{number}");
+                var tb = GenerateTextBlock($"{rows[i]}");
 
                 // This sets the column the TextBlock will be placed in.
-                Grid.SetRow(tb, number);
+                Grid.SetRow(tb, i + 1);
 
                 // Adds the TextBlock to the Grid
                 SquaresGrid.Children.Add(tb);
-            });
-
+            }
+            
             // Hide the number generation button
             GenerateNumbersButton.Visibility = Visibility.Collapsed;
 
@@ -106,7 +110,7 @@ namespace SuperbowlSquares
                 }
 
                 // *** Dialog to ask user to email image *** //
-                var md = new MessageDialog("Would you like to send an email to Julie?", "Image Generated");
+                var md = new MessageDialog("Would you like to send an email with the rendered image?", "Image Generated");
                 md.Commands.Add(new UICommand("YES"));
                 md.Commands.Add(new UICommand("NO"));
 
