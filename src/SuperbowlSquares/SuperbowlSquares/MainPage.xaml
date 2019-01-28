@@ -62,6 +62,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <Image Source="Assets/SBLogo.png" Grid.Row="1" Grid.Column="1"  Grid.ColumnSpan="10" Margin="20" Grid.RowSpan="10" Opacity="0.4"/>
+
             <Button x:Name="GenerateNumbersButton"
                     Click="GenerateNumbersButton_OnClick"
                     HorizontalAlignment="Stretch"
@@ -143,17 +145,12 @@
                                      AnimationStyle="AnimationStyle7"
                                      FontSize="32"
                                      Content="Awesomeness in Progress... (pun intended)">
-
             <primitives:RadBusyIndicator.ContentTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" Margin="0,0,0,400"/>
+                    <TextBlock Text="{Binding}"
+                               Margin="0,0,0,400" />
                 </DataTemplate>
             </primitives:RadBusyIndicator.ContentTemplate>
-
         </primitives:RadBusyIndicator>
-                                     
-                                     
-                                     
-                                     
     </Grid>
 </Page>
