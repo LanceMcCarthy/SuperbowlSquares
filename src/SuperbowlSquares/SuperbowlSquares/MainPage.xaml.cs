@@ -30,7 +30,7 @@ namespace SuperbowlSquares
             var columns = RandomAxis.generateAxis().ToList();
 
             // Get the random numbers from the generator for the COLUMNS
-            for (int i = 0; i < columns.Count - 1; i++)
+            for (int i = 0; i <= columns.Count - 1; i++)
             {
                 // Create a TextBlock to show the number.
                 var tb = GenerateTextBlock($"{columns[i]}");
@@ -47,7 +47,7 @@ namespace SuperbowlSquares
             var rows = RandomAxis.generateAxis().ToList();
 
             // Get the random numbers from the generator for the ROWS
-            for (int i = 0; i < rows.Count - 1; i++)
+            for (int i = 0; i <= rows.Count - 1; i++)
             {
                 // Create a TextBlock to show the number.
                 var tb = GenerateTextBlock($"{rows[i]}");
