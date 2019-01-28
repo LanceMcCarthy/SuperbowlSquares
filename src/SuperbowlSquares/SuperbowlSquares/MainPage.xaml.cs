@@ -9,7 +9,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
-using HelperLib;
+using SBSquaresLibrary;
 
 namespace SuperbowlSquares
 {
@@ -26,12 +26,12 @@ namespace SuperbowlSquares
             GenerateNumbersButton.IsEnabled = false;
 
             // Get Rick's random generator
-            var generator = new NumberGenerator();
+            var generator = new RandomAxis();
 
             // *** COLUMNS *** //
 
             // Get the random numbers from the generator for the COLUMNS
-            generator.GetTenNumbers().ToList().ForEach(number =>
+            generator.GetUnscrambledAxis().ToList().ForEach(number =>
             {
                 // Create a TextBlock to show the number.
                 var tb = GenerateTextBlock($"{number}");
@@ -46,7 +46,7 @@ namespace SuperbowlSquares
             // *** ROWS *** //
 
             // Get the random numbers from the generator for the ROWS
-            generator.GetTenNumbers().ToList().ForEach(number =>
+            generator.GetUnscrambledAxis().ToList().ForEach(number =>
             {
                 // Create a TextBlock to show the number.
                 var tb = GenerateTextBlock($"{number}");

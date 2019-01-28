@@ -162,9 +162,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HelperLib\HelperLib.csproj">
-      <Project>{2d15877a-8abe-408c-8609-3dbede0b9e67}</Project>
-      <Name>HelperLib</Name>
+    <ProjectReference Include="..\SBSquaresLibrary\SBSquaresLibrary.csproj">
+      <Project>{869d55d7-cbbb-45c3-b0e4-6788379fc434}</Project>
+      <Name>SBSquaresLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
