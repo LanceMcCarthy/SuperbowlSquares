@@ -4,6 +4,7 @@
       xmlns:local="using:SuperbowlSquares"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -136,7 +137,11 @@
                     Style="{StaticResource ColumnBorderStyle}" />
         </Grid>
 
-        
-
+        <primitives:RadBusyIndicator x:Name="BusyIndicator"
+                                     Background="#DDFFFFFF"
+                                     Foreground="ForestGreen"
+                                     AnimationStyle="AnimationStyle7"
+                                     FontSize="32"
+                                     Content="Awesomeness in Progress... (pun intended)" />
     </Grid>
 </Page>
