@@ -25,13 +25,10 @@ namespace SuperbowlSquares
             // Disable the button immediately to prevent accidental double click
             GenerateNumbersButton.IsEnabled = false;
 
-            // Get Rick's random generator
-            var generator = new RandomAxis();
-
             // *** COLUMNS *** //
 
             // Get the random numbers from the generator for the COLUMNS
-            generator.GetUnscrambledAxis().ToList().ForEach(number =>
+            RandomAxis.generateAxis().ToList().ForEach(number =>
             {
                 // Create a TextBlock to show the number.
                 var tb = GenerateTextBlock($"{number}");
@@ -46,7 +43,7 @@ namespace SuperbowlSquares
             // *** ROWS *** //
 
             // Get the random numbers from the generator for the ROWS
-            generator.GetUnscrambledAxis().ToList().ForEach(number =>
+            RandomAxis.generateAxis().ToList().ForEach(number =>
             {
                 // Create a TextBlock to show the number.
                 var tb = GenerateTextBlock($"{number}");
