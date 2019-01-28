@@ -93,7 +93,7 @@ namespace SuperbowlSquares
                 // *** Image Rendering *** //
                 // Render the UI pixels to PNG pixels
                 var rtb = new RenderTargetBitmap();
-                await rtb.RenderAsync(SquaresGrid, (int)SquaresGrid.Width, (int)SquaresGrid.Height);
+                await rtb.RenderAsync(SquaresGrid);
 
                 // TODO Buffer Exception Reading Buffer
                 // https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Media.Imaging.RenderTargetBitmap
