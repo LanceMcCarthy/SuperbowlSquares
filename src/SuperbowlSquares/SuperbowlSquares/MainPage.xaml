@@ -1,0 +1,142 @@
+﻿<Page x:Class="SuperbowlSquares.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SuperbowlSquares"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="RowBorderStyle"
+               TargetType="Border">
+            <Setter Property="Grid.Column"
+                    Value="0" />
+            <Setter Property="Grid.ColumnSpan"
+                    Value="11" />
+            <Setter Property="BorderThickness"
+                    Value="1,1,1,1" />
+            <Setter Property="BorderBrush"
+                    Value="Black" />
+        </Style>
+        <Style x:Key="ColumnBorderStyle"
+               TargetType="Border">
+            <Setter Property="Grid.Row"
+                    Value="0" />
+            <Setter Property="Grid.RowSpan"
+                    Value="11" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="BorderBrush"
+                    Value="Black" />
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="RootGrid">
+        <Grid x:Name="SquaresGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button x:Name="GenerateNumbersButton"
+                    Click="GenerateNumbersButton_OnClick"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="5">
+                <Button.Content>
+                    <SymbolIcon Symbol="Refresh" />
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="GenerateImageButton"
+                    Visibility="Collapsed"
+                    Click="GenerateImageButton_OnClick"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="5">
+                <Button.Content>
+                    <SymbolIcon Symbol="Download" />
+                </Button.Content>
+            </Button>
+
+            <Border Background="FloralWhite"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="10" />
+
+            <Border Background="FloralWhite"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.RowSpan="10" />
+
+            <Border Grid.Row="1"
+                    BorderThickness="1,3,1,1"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="2"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="3"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="4"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="5"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="6"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="7"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="8"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="9"
+                    Style="{StaticResource RowBorderStyle}" />
+            <Border Grid.Row="10"
+                    Style="{StaticResource RowBorderStyle}" />
+
+            <Border Grid.Column="1"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="2"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="3"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="4"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="5"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="6"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="7"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="8"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="9"
+                    Style="{StaticResource ColumnBorderStyle}" />
+            <Border Grid.Column="10"
+                    Style="{StaticResource ColumnBorderStyle}" />
+        </Grid>
+
+        
+
+    </Grid>
+</Page>
