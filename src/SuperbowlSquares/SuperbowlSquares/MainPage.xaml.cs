@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Email;
 using Windows.Graphics.Display;
@@ -22,7 +23,7 @@ namespace SuperbowlSquares
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void GenerateNumbersButton_OnClick(object sender, RoutedEventArgs e)
@@ -30,9 +31,11 @@ namespace SuperbowlSquares
             // Disable the button immediately to prevent accidental double click
             GenerateNumbersButton.IsEnabled = false;
 
+            var generator = new RandomAxis();
+
             // *** COLUMNS *** //
 
-            var columns = RandomAxis.generateAxis().ToList();
+            var columns = generator.GenerateAxis().ToList();
 
             // Get the random numbers from the generator for the COLUMNS
             for (int i = 0; i <= columns.Count - 1; i++)
@@ -49,7 +52,7 @@ namespace SuperbowlSquares
             
             // *** ROWS *** //
 
-            var rows = RandomAxis.generateAxis().ToList();
+            var rows = generator.GenerateAxis().ToList();
 
             // Get the random numbers from the generator for the ROWS
             for (int i = 0; i <= rows.Count - 1; i++)
@@ -89,38 +92,12 @@ namespace SuperbowlSquares
                 BusyIndicator.IsActive = true;
 
                 // *** Image Rendering *** //
-                // Render the UI pixels to PNG pixels
-                var rtb = new RenderTargetBitmap();
-                await rtb.RenderAsync(SquaresGrid, (int)SquaresGrid.Width, (int)SquaresGrid.Height);
+               var file =  await RenderAsync();
 
-                // TODO Buffer Exception Reading Buffer
-                // https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Media.Imaging.RenderTargetBitmap
-                var pixelBuffer = await rtb.GetPixelsAsync();
-                var pixels = pixelBuffer.ToArray();
-
-                var displayInformation = DisplayInformation.GetForCurrentView();
-
-                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync($"superbowl_squares" + ".png", CreationCollisionOption.GenerateUniqueName);
-
-                using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                {
-                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-
-                    encoder.SetPixelData(BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Premultiplied,
-                        (uint)rtb.PixelWidth,
-                        (uint)rtb.PixelHeight,
-                        displayInformation.RawDpiX,
-                        displayInformation.RawDpiY,
-                        pixels);
-
-                    await encoder.FlushAsync();
-                }
-                
                 // *** Dialog to ask user to email image *** //
                 var md = new MessageDialog("What would you like to do with the rendered image?", "Image Generated");
                 md.Commands.Add(new UICommand("Save As"));
-                md.Commands.Add(new UICommand("Email"));
+                //md.Commands.Add(new UICommand("Email"));
                 md.Commands.Add(new UICommand("Copy to Clipboard"));
                 md.Commands.Add(new UICommand("Do Nothing"));
 
@@ -154,6 +131,8 @@ namespace SuperbowlSquares
 
                     var saveAsFile = await savePicker.PickSaveFileAsync();
 
+                    //using(var fileStream = saveAsFile.OpenStreamForWriteAsync())
+
                     await file.CopyAndReplaceAsync(saveAsFile);
 
                     CachedFileManager.DeferUpdates(file);
@@ -174,7 +153,7 @@ namespace SuperbowlSquares
                 {
                     var dataPackage = new DataPackage();
                     dataPackage.RequestedOperation = DataPackageOperation.Copy;
-                    RandomAccessStreamReference.CreateFromFile(file);
+                    dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(file));
 
                     Clipboard.SetContent(dataPackage);
 
@@ -189,6 +168,36 @@ namespace SuperbowlSquares
             {
                 BusyIndicator.IsActive = false;
             }
+        }
+
+        public async Task<StorageFile> RenderAsync()
+        {
+            var rtb = new RenderTargetBitmap();
+
+            await rtb.RenderAsync(SquaresGrid);
+
+            var pixelBuffer = await rtb.GetPixelsAsync();
+            var pixels = pixelBuffer.ToArray();
+            var displayInformation = DisplayInformation.GetForCurrentView();
+
+            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("superbowlsquares.png", CreationCollisionOption.ReplaceExisting);
+
+            using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+
+                encoder.SetPixelData(BitmapPixelFormat.Bgra8,
+                    BitmapAlphaMode.Premultiplied,
+                    (uint)rtb.PixelWidth,
+                    (uint)rtb.PixelHeight,
+                    displayInformation.RawDpiX,
+                    displayInformation.RawDpiY,
+                    pixels);
+
+                await encoder.FlushAsync();
+            }
+
+            return file;
         }
     }
 }
