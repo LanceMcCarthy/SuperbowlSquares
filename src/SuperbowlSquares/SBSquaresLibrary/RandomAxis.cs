@@ -5,11 +5,14 @@ namespace SBSquaresLibrary
 {
     public class RandomAxis
     {
-        private int _length = 10;
-        
-        public IEnumerable<int> GetUnscrambledAxis(int length = 10)
+        private static int _length = 10;
+
+        public IEnumerable<int> GenerateAxis()
         {
-            return Enumerable.Range(1, length);
+            IEnumerable<int> axis = Enumerable.Range(0, _length);
+            IEnumerable<int> scrambledAxis = axis.Shuffle();
+
+            return scrambledAxis;
         }
     }
 }

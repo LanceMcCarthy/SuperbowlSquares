@@ -62,26 +62,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button x:Name="GenerateNumbersButton"
-                    Click="GenerateNumbersButton_OnClick"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Margin="5">
-                <Button.Content>
-                    <SymbolIcon Symbol="Refresh" />
-                </Button.Content>
-            </Button>
-
-            <Button x:Name="GenerateImageButton"
-                    Visibility="Collapsed"
-                    Click="GenerateImageButton_OnClick"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Margin="5">
-                <Button.Content>
-                    <SymbolIcon Symbol="Download" />
-                </Button.Content>
-            </Button>
+            <Image Source="Assets/SBLogo.png"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="10"
+                   Margin="20"
+                   Grid.RowSpan="10"
+                   Opacity="0.4" />
 
             <Border Background="FloralWhite"
                     Grid.Row="0"
@@ -137,11 +124,43 @@
                     Style="{StaticResource ColumnBorderStyle}" />
         </Grid>
 
+        <Button x:Name="GenerateNumbersButton"
+                Click="GenerateNumbersButton_OnClick"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="80"
+                Height="80"
+                Margin="10">
+            <Button.Content>
+                <SymbolIcon Symbol="Refresh" />
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="GenerateImageButton"
+                Visibility="Collapsed"
+                Click="GenerateImageButton_OnClick"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="80"
+                Height="80"
+                Margin="10">
+            <Button.Content>
+                <SymbolIcon Symbol="Download" />
+            </Button.Content>
+        </Button>
+
         <primitives:RadBusyIndicator x:Name="BusyIndicator"
                                      Background="#DDFFFFFF"
                                      Foreground="ForestGreen"
                                      AnimationStyle="AnimationStyle7"
                                      FontSize="32"
-                                     Content="Awesomeness in Progress... (pun intended)" />
+                                     Content="Awesomeness in Progress... (pun intended)">
+            <primitives:RadBusyIndicator.ContentTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Margin="0,0,0,400" />
+                </DataTemplate>
+            </primitives:RadBusyIndicator.ContentTemplate>
+        </primitives:RadBusyIndicator>
     </Grid>
 </Page>
