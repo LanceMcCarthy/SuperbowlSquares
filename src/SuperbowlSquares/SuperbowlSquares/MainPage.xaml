@@ -153,7 +153,6 @@
                                      Background="#DDFFFFFF"
                                      Foreground="ForestGreen"
                                      AnimationStyle="AnimationStyle7"
-                                     FontSize="32"
                                      Content="Awesomeness in Progress... (pun intended)">
             <primitives:RadBusyIndicator.ContentTemplate>
                 <DataTemplate>
