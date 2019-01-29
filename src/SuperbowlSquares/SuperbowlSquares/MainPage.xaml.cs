@@ -99,7 +99,6 @@ namespace SuperbowlSquares
                 md.Commands.Add(new UICommand("Save As"));
                 md.Commands.Add(new UICommand("Email"));
                 md.Commands.Add(new UICommand("Copy to Clipboard"));
-                md.Commands.Add(new UICommand("Do Nothing"));
 
                 var result = await md.ShowAsync();
 
