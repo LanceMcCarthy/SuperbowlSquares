@@ -34,7 +34,8 @@
     </Page.Resources>
 
     <Grid x:Name="RootGrid">
-        <Grid x:Name="SquaresGrid">
+        <Grid x:Name="SquaresGrid" 
+              Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
