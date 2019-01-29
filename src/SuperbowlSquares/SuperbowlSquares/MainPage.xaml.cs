@@ -97,7 +97,7 @@ namespace SuperbowlSquares
                 // *** Dialog to ask user to email image *** //
                 var md = new MessageDialog("What would you like to do with the rendered image?", "Image Generated");
                 md.Commands.Add(new UICommand("Save As"));
-                //md.Commands.Add(new UICommand("Email"));
+                md.Commands.Add(new UICommand("Email"));
                 md.Commands.Add(new UICommand("Copy to Clipboard"));
                 md.Commands.Add(new UICommand("Do Nothing"));
 
@@ -130,9 +130,7 @@ namespace SuperbowlSquares
                     savePicker.SuggestedFileName = "Superbowl Squares 2019";
 
                     var saveAsFile = await savePicker.PickSaveFileAsync();
-
-                    //using(var fileStream = saveAsFile.OpenStreamForWriteAsync())
-
+                    
                     await file.CopyAndReplaceAsync(saveAsFile);
 
                     CachedFileManager.DeferUpdates(file);
